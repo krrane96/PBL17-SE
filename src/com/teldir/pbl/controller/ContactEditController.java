@@ -1,12 +1,12 @@
 package com.teldir.pbl.controller;
 
 import com.teldir.pbl.model.Contacts;
+import com.teldir.pbl.model.Datasource;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
-import java.awt.*;
 
 public class ContactEditController {
 
@@ -30,40 +30,85 @@ public class ContactEditController {
     private Stage dialogStage;
     private Contacts contact;
     private boolean okClicked = false;
-    private String Fname;
+
+    private String fname;
+    private String lname;
     private int phone_no;
-    private String Lname;
-    private String Street;
+    private String email;
+    private String street;
     private String city;
     private String pcode;
+    private int insertData=1;
 
     public void setContact(Contacts contact) {
         this.contact = contact;
+        try{
+            firstNameField.setText(contact.getFname());
+            lastNameField.setText(contact.getLname());
+            if(contact.getPhone()!=0){
+                phoneNumberField.setText(Integer.toString(contact.getPhone()));
+            }
+            else{
+                phoneNumberField.setPromptText("Enter your Mobile Number..");
+            }
+            if(contact.getEmail()!=null){
+                emailAddressField.setText(contact.getEmail());
+            }
+            else {
+                emailAddressField.setPromptText("abcd@xyz.com");
+            }
+            streetField.setText(contact.getStreet());
+            cityField.setText(contact.getCity());
+            postalCodeField.setText(contact.getPincode());
+            if(contact.getBday()!= null){
+                birthdayField.setText(contact.getBday());
+            }
+            else {
+                birthdayField.setPromptText("dd.mm.yyyy");
+            }
+//            phone_no= Integer.parseInt(phoneNumberField.getText());
+//            email=emailAddressField.getText();
+//            street=streetField.getText();
+//            pcode=postalCodeField.getText();
+//            city=cityField.getText();
+//            birthdayField.setText(DateUtil.format(contact.getBday()));
+        }
 
-//        firstNameField.setText(contact.getFname());
-        Fname=firstNameField.getText();
-        Lname=lastNameField.getText();
-        phone_no=Integer.parseInt(phoneNumberField.getText());
-        Street=streetField.getText();
-        pcode=postalCodeField.getText();
-        city=cityField.getText();
-//        birthdayField.setText(DateUtil.format(contact.getBday()));
-//        birthdayField.setPromptText("dd.mm.yyyy");
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public boolean isOkClicked() {return okClicked;}
 
-    public void handleOK(){
-        if(isInputValid())
-        okClicked = true;
-
+    @FXML
+    public void handleOK(int insertData){
+        if(isInputValid()){
+            contact.setFname(firstNameField.getText());
+            contact.setLname(lastNameField.getText());
+            int phoneNumber = Integer.parseInt(phoneNumberField.getText());
+            contact.setPhone(phoneNumber);
+            contact.setEmail(emailAddressField.getText());
+            contact.setBday(birthdayField.getText());
+            contact.setStreet(streetField.getText());
+            contact.setPincode(postalCodeField.getText());
+            if(insertData!=0){
+                Datasource.getInstance().insertData(firstNameField.getText(), lastNameField.getText(), phoneNumber,
+                        emailAddressField.getText(), birthdayField.getText(), streetField.getText(),
+                        cityField.getText(), postalCodeField.getText());
+            }
+            okClicked = true;
+            dialogStage.close();
+        }
     }
+
+    @FXML
+    public void handleCancel(){dialogStage.close();}
 
     public void setDialogstage(Stage dialogStage){
         this.dialogStage=dialogStage;
         this.dialogStage.getIcons().add(new Image("file:resource/images/edit-icon.png"));
     }
-
     public boolean isInputValid(){
         String errorMessage="";
         if(firstNameField.getText()== null || firstNameField.getText().length()==0){
@@ -73,15 +118,15 @@ public class ContactEditController {
         {
             errorMessage += "Last Name is not valid!\n";
         }
-        if(postalCodeField.getText()== null || postalCodeField.getText().length()==0){
-            errorMessage += "PinCode is Not valid!\n";
+        if(phoneNumberField.getText()== null || phoneNumberField.getText().length()==0){
+            errorMessage += "Please Enter a valid Phone Number\n";
         }
         else {
             try{
-                Integer.parseInt(postalCodeField.getText());
+                Integer.parseInt(phoneNumberField.getText());
             }
             catch (NumberFormatException e){
-                errorMessage +="Please enter a valid Pincode";
+                errorMessage +="Please enter a valid Phone Number";
             }
         }
         if (errorMessage.length()==0){

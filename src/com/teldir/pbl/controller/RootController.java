@@ -42,7 +42,7 @@ public class RootController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("PhoneBook");
         alert.setHeaderText("About");
-        alert.setContentText("Credits: Arvind Hariharan Nair\nBhabya Mishra\nKetaki Barde\nKrunal Rane\nMegha Menon" +
+        alert.setContentText("Credits:\nArvind Hariharan Nair\nBhabya Mishra\nKetaki Barde\nKrunal Rane\nMegha Menon" +
                 "\n\n Class: SE COMPS A");
         alert.showAndWait();
     }

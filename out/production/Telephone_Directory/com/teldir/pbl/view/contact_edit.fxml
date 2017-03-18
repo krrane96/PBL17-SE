@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
@@ -9,9 +10,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="400.0" prefWidth="439.0" styleClass="background" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teldir.pbl.controller.ContactEditController">
+<AnchorPane prefHeight="500.0" prefWidth="500.0" styleClass="background" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teldir.pbl.controller.ContactEditController">
     <children>
-        <GridPane layoutX="30.0" layoutY="28.0" prefHeight="280.0" prefWidth="404.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <GridPane layoutX="30.0" layoutY="28.0" prefHeight="400.0" prefWidth="404.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="10.0" prefWidth="111.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="316.0" minWidth="10.0" prefWidth="261.0" />
@@ -33,24 +34,51 @@
                 <Label text="City" GridPane.rowIndex="5" />
                 <Label text="Postal Code" GridPane.rowIndex="6" />
                 <Label text="Birthday" GridPane.rowIndex="7" />
-                <TextField fx:id="firstNameField" GridPane.columnIndex="1" />
-                <TextField fx:id="lastNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="firstNameField" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </GridPane.margin></TextField>
+                <TextField fx:id="lastNameField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </GridPane.margin></TextField>
                 <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <TextField fx:id="streetField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <TextField fx:id="cityField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                <TextField fx:id="postalCodeField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                <TextField fx:id="birthdayField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                <TextField fx:id="streetField" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </GridPane.margin></TextField>
+                <TextField fx:id="cityField" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </GridPane.margin></TextField>
+                <TextField fx:id="postalCodeField" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </GridPane.margin></TextField>
+                <TextField fx:id="birthdayField" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <GridPane.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </GridPane.margin></TextField>
             <Label text="Phone" GridPane.rowIndex="2" />
-            <TextField fx:id="phoneNumberField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="phoneNumberField" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </GridPane.margin></TextField>
             <Label text="email" GridPane.rowIndex="3" />
-            <TextField fx:id="emailAddressField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="emailAddressField" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </GridPane.margin></TextField>
             </children>
         </GridPane>
         <ButtonBar layoutX="176.0" layoutY="233.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
             <buttons>
-                <Button defaultButton="true" mnemonicParsing="false" onAction="#handleOk" text="OK" />
+                <Button defaultButton="true" mnemonicParsing="false" onAction="#handleOK" text="OK" />
                 <Button mnemonicParsing="false" onAction="#handleCancel" prefWidth="120.0" text="Cancel" />
             </buttons>
         </ButtonBar>
     </children>
+   <padding>
+      <Insets top="5.0" />
+   </padding>
 </AnchorPane>
